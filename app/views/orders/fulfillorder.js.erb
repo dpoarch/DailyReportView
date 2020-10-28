@@ -1,0 +1,5 @@
+$('.orderstatusbtn').bind('ajax:success', function() {
+   let $status= $(this).closest('tr').find('td.orderstatus');
+   $status.text( $status.text()=='Not Fulfilled'?'Fulfilled':'Not Fulfilled') ;
+   $(this).text($(this).text()=='Change to Fulfilled'?'Change to Not Fulfilled':'Change to Fulfilled')
+});

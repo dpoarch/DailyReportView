@@ -1,0 +1,37 @@
+<h1>Listing Carts/Checkout</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Product</th>
+      <th>Store</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carts.each do |cart| %>
+      <tr>
+        <td><input type="checkbox" data-id="<%= cart.id %>" class="cartitemcheckout" /></td>
+        <td><div style="width: 200px; height: 150px;"><%= image_tag(cart.location_product.product.image , :style =>"width: auto; height: 150px;") %></div></td>
+        <td><%= cart.location_product.product.name %></td>
+        <td><%= cart.location_product.location.description %></td>
+        <td><%= number_to_currency(cart.price, precision: 2) %></td>
+        <td><%= cart.quantity %></td>
+        <td><%= number_to_currency(cart.quantity*cart.price, precision: 2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<input type="button" value="Create Order" onclick="Drv.checkout()"/>
+
+<input type="hidden" value="<%= checkout_cart_path %>" id="checkoutcart_url"/>
+<input type="hidden" value="<%= orders_path %>" id="orders_url"/>
+<%= javascript_include_tag "cart" %>
+
+

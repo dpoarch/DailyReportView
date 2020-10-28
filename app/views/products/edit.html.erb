@@ -1,0 +1,6 @@
+<h1>Edit Product</h1>
+
+<%= form_with model: @product, as: :product, url: update_product_path, html: { multipart: true, autocomplete: 'off' } do |form| %>
+    <%= render partial: 'form', locals: {product: @product} %>
+<% end %>
+
